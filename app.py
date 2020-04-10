@@ -12,11 +12,13 @@ main_batch = pyglet.graphics.Batch()
 
 # Load the main music
 theme_song = pyglet.media.load('./resources/music.wav')
+lose_song = pyglet.media.load('./resources/lose.wav')
 music = pyglet.media.Player()
 music.queue(theme_song)
 
 # Set up the two top labels
-score_label = pyglet.text.Label(text="Caught 0", x=15, y=75, batch=main_batch)
+score_label = pyglet.text.Label(text="Caught 0", x=15, y=15, batch=main_batch)
+
 
 # Initialize the player sprite
 hero = player.Player(x=400, y=300, batch=main_batch)
@@ -44,6 +46,8 @@ def game_over():
 
     is_drawing = False
     music.pause()
+    lose_song.play()
+    pyglet.text.Label(text="GAME OVER", x=160, y=360, batch=main_batch)
 
 
 def update(dt):
