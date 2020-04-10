@@ -77,11 +77,14 @@ def update(dt):
             # Remove the object from our list
             game_objects.remove(to_remove)
 
-            score += 1
+            score += 10
             score_label.text = f"Caught {score}"
 
             gotcha_sound_effect = pyglet.media.load('./resources/bullet.wav', streaming=False)
             gotcha_sound_effect.play()
+
+            if score >= 100:
+                game_over()
 
             # Add a new monster
             new_goblin = monster.Monster(x=randint(0, WIDTH), y=randint(0, HEIGHT), batch=main_batch)
